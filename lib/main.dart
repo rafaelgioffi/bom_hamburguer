@@ -31,18 +31,14 @@ class MenuScreen extends StatefulWidget {
 enum itemtype { sandwich, fries, drink }
 
 class MenuItem {
-  int _counter = 0;
+  final String name;
+  final double price;
+  final ItemType type;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  const MenuItem({required this.name, required this.price, required this.type});
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
