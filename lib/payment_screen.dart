@@ -27,7 +27,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   void _finalizeOrder() {
-    if (_formKey.currentState.validate()) {
+    if (_formKey.currentState!.validate()) {
       Navigator.pushReplacement(
         context, 
         MaterialPageRoute(

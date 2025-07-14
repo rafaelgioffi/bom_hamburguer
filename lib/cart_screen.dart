@@ -1,3 +1,4 @@
+import 'package:bom_hamburguer/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
 
@@ -37,7 +38,14 @@ class CartScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    //Implementar depois.. tela de pagamentos...
+                    Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (_) => PaymentScreen(
+                        selectedItems: selectedItems, 
+                        total: total,
+                        ),
+                        ),
+                        );
                   },
                   icon: const Icon(Icons.payment),
                   label: const Text('Pagar'),
