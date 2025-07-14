@@ -13,7 +13,7 @@ class PaymentScreen extends StatefulWidget {
   });
 
   @override
-  State<PaymentScreen> createState() => PaymentScreenState();
+  State<PaymentScreen> createState() => _PaymentScreenState();
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {

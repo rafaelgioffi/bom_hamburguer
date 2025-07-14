@@ -32,7 +32,7 @@ class ConfirmationScreen extends StatelessWidget {
             const SizedBox(height: 16),
             const Text('Seu pedido:'),
             const SizedBox(height: 8),
-            ...selectedList.map((item) => Text('- ${item.name}')),
+            ...selectedList.map((item) => Text('- ${item.name} - R\$ ${item.price.toStringAsFixed(2)}')),
             const Divider(height: 32),
             Text('Total: R\$ ${total.toStringAsFixed(2)}',
             style: const TextStyle(fontSize: 16)),
