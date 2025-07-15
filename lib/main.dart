@@ -15,7 +15,9 @@ class BomHamburguerApp extends StatelessWidget {
     return MaterialApp(
       title: 'Bom hambúrguer',
       theme: ThemeData(        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange, 
+        brightness: Brightness.light,
+        ),
         useMaterial3: true,
       ),
       home: const MenuScreen(),
@@ -59,7 +61,7 @@ class MenuItem {
       ItemType.fries: null,
       ItemType.drink: null,
     };
-
+]
     void toggleSelection(MenuItem item) {
       setState(() {
         if (selectedItems[item.type] == item) {
