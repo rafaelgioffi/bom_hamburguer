@@ -36,17 +36,22 @@ class MenuItem {
   final String name;
   final double price;
   final ItemType type;
+  final String imageUrl;
 
-  const MenuItem({required this.name, required this.price, required this.type});
+  const MenuItem({required this.name, required this.price, required this.type, required this.imageUrl});
   }
 
   class _MenuScreenState extends State<MenuScreen> {
     final List<MenuItem> menuItens = const [
-      MenuItem(name: 'X-Burguer', price: 5.00, type: ItemType.sandwich),
-      MenuItem(name: 'X-Egg', price: 4.50, type: ItemType.sandwich),
-      MenuItem(name: 'X-Bacon', price: 7.00, type: ItemType.sandwich),
-      MenuItem(name: 'Fries', price: 2.00, type: ItemType.fries),
-      MenuItem(name: 'Soft Drink', price: 2.50, type: ItemType.drink),
+      MenuItem(name: 'X-Burguer', price: 5.00, type: ItemType.sandwich, imageUrl: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png',
+      ),
+      MenuItem(name: 'X-Egg', price: 4.50, type: ItemType.sandwich, imageUrl: 'https://cdn-icons-png.flaticon.com/512/1858/1858002.png',
+      ),
+      MenuItem(name: 'X-Bacon', price: 7.00, type: ItemType.sandwich, imageUrl: 'https://cdn-icons-png.flaticon.com/512/5098/5098990.png',
+      ),
+      MenuItem(name: 'Fries', price: 2.00, type: ItemType.fries, imageUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046786.png',
+      ),
+      MenuItem(name: 'Soft Drink', price: 2.50, type: ItemType.drink, imageUrl: 'https://cdn-icons-png.flaticon.com/512/5825/5825459.png',),
     ];
 
     final Map<ItemType, MenuItem?> selectedItems = {
@@ -78,12 +83,25 @@ body: ListView.builder(
     final item = menuItens[index];
     final isSelected = selectedItems[item.type] == item;
 
-    return ListTile(
-      title: Text('${item.name} - R\$ ${item.price.toStringAsFixed(2)}'),
-      tileColor: isSelected ? Colors.green.shade100 : null,
-      trailing: isSelected ? const Icon(Icons.check_circle, color: Colors.green) : null,
-      onTap: () => toggleSelection(item),
-    );
+    return 
+    Card(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      color: isSelected ? Colors.deepOrange.shade50 : null,
+      elevation: 2,
+      child: ListTile(
+        leading: Image.network(item.imageUrl, width: 50, height: 50),
+        title: Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+        subtitle: Text('R\$ ${item.price.toStringAsFixed(2)}'),
+        trailing: isSelected ? const Icon(Icons.check_circle, color: Colors.green) : const Icon(Icons.add_circle_outline),
+        onTap: () => toggleSelection(item),
+        ),
+        );
+    // ListTile(
+    //   title: Text('${item.name} - R\$ ${item.price.toStringAsFixed(2)}'),
+    //   tileColor: isSelected ? Colors.green.shade100 : null,
+    //   trailing: isSelected ? const Icon(Icons.check_circle, color: Colors.green) : null,
+    //   onTap: () => toggleSelection(item),
+    // );
   },
 ),
 bottomNavigationBar: Padding(padding: const EdgeInsets.all(16),
