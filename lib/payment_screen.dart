@@ -29,7 +29,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   void _finalizeOrder() {
     if (_formKey.currentState!.validate()) {
       Navigator.pushReplacement(
-        context, 
+        context,
         MaterialPageRoute(
           builder: (_) => ConfirmationScreen(
             customerName: _nameController.text,
@@ -37,42 +37,47 @@ class _PaymentScreenState extends State<PaymentScreen> {
             total: widget.total,
           ),
         ),
-        );
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pagamento')),
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Form(
-                key: _formKey,
-                child: TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Qual seu nome?'),
-                    validator: (value) =>
-                    value == null || value.isEmpty ? 'Digite seu nome' : null,
+      appBar: AppBar(title: const Text('Pagamento')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Qual seu nome?',
+                  border: OutlineInputBorder(),
                 ),
+                validator: (value) =>
+                    value == null || value.isEmpty ? 'Digite seu nome' : null,
               ),
-              const SizedBox(height: 20),
-              Text('Total a pagar: R\$ ${widget.total.toStringAsFixed(2)}',
-              style: const TextStyle(fontSize: 18)),
-              const Spacer(),
-              ElevatedButton.icon(
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Total a pagar: R\$ ${widget.total.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
                 onPressed: _finalizeOrder,
                 icon: const Icon(Icons.check_circle),
                 label: const Text('Finalizar Pedido'),
-                ),
-            ],
-          ),
-          ),
-      );
-    
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

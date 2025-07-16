@@ -25,34 +25,50 @@ class CartScreen extends StatelessWidget {
           children: [
             const Text('Seu pedido:',
             style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              ...selectedList.map((item) => Text('${item.name} - R\$ ${item.price.toStringAsFixed(2)}')),
-              const Divider(height: 24),
+              fontSize: 20,
+              fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              ...selectedList.map((item) => Card(
+                margin: const EdgeInsets.symmetric(vertical: 6),
+                elevation: 2,
+                child: ListTile(
+                  leading: Image.network(item.imageUrl, width: 40, height: 40),
+                  title: Text(item.name),
+                  trailing: Text('R\$ ${item.price.toStringAsFixed(2)}',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              )),
+              const Divider(height: 32),
               Text('Subtotal: R\$ ${subtotal.toStringAsFixed(2)}'),
               Text('Desconto: R\$ ${discount.toStringAsFixed(2)}'),
+              const SizedBox(height: 8),
               Text('Total: R\$ ${total.toStringAsFixed(2)}',
-               style: const TextStyle(fontWeight: FontWeight.bold)),
+               style: const TextStyle(fontSize: 18,
+                fontWeight: FontWeight.bold),
+                ),
               const Spacer(),
-              Center(
+              SizedBox(
+                width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.push(context,
+                    Navigator.push(
+                      context,
                     MaterialPageRoute(
                       builder: (_) => PaymentScreen(
                         selectedItems: selectedItems, 
                         total: total,
                         ),
                         ),
-                        );
+                    );
                   },
                   icon: const Icon(Icons.payment),
-                  label: const Text('Pagar'),
+                  label: const Text('Ir para Pagamento'),
                   ),
-              ),              
-          ],
-        ),
+                ),          
+              ],
+          ),
         ),
     );
   }
@@ -81,5 +97,5 @@ double _sum(Map<ItemType, MenuItem?> items) {
   return items.values
   .whereType<MenuItem>()
   .fold(0.0, (sum, item) => sum + item.price);
-}
+  }
 }

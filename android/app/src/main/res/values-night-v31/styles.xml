@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources>    
     <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">        
     </style>
 </resources>

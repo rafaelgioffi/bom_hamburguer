@@ -26,27 +26,33 @@ class ConfirmationScreen extends StatelessWidget {
           children: [
             Text(
               'Obrigado, $customerName!',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold)),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 16),
             const Text('Seu pedido:'),
-            const SizedBox(height: 8),
-            ...selectedList.map((item) => Text('- ${item.name} - R\$ ${item.price.toStringAsFixed(2)}')),
+            const SizedBox(height: 12),
+            ...selectedList.map(
+              (item) => ListTile(
+                leading: Image.network(item.imageUrl, width: 40, height: 40),
+                title: Text(item.name),
+                trailing: Text('R\$ ${item.price.toStringAsFixed(2)}'),
+              ),
+            ),
             const Divider(height: 32),
-            Text('Total: R\$ ${total.toStringAsFixed(2)}',
-            style: const TextStyle(fontSize: 16)),
+            Text(
+              'Total: R\$ ${total.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             const Spacer(),
             Center(
               child: ElevatedButton.icon(
                 icon: const Icon(Icons.home),
                 label: const Text('Voltar ao Início'),
                 onPressed: () {
-                  Navigator.popUntil(context,
-                  (route) => route.isFirst);
+                  Navigator.popUntil(context, (route) => route.isFirst);
                 },
-                ),
-            )
+              ),
+            ),
           ],
         ),
       ),
