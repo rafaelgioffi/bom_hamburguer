@@ -117,6 +117,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(title: const Text('BOM HAMBURGUER'), centerTitle: true),
       body: ListView.builder(
         itemCount: menuItens.length,
