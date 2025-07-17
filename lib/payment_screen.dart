@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'confirmation_screen.dart';
+import 'utils.dart';
 
 class PaymentScreen extends StatefulWidget {
   final Map<ItemType, MenuItem?> selectedItems;
-  final double discountRate;
   final double total;
-
+  
   const PaymentScreen({
     super.key,
-    required this.selectedItems,
-    required this.discountRate,
+    required this.selectedItems,  
     required this.total,
   });
 
@@ -36,8 +35,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           builder: (_) => ConfirmationScreen(
             customerName: _nameController.text,
             selectedItems: widget.selectedItems,
-            discountRate: widget.discountRate,
-            total: widget.total,
+            total: widget.total,            
           ),
         ),
       );
@@ -46,7 +44,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedList = widget.selectedItems.values.whereType<MenuItem>().toList();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(title: const Text('Pagamento')),
@@ -65,22 +63,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 validator: (value) =>
                     value == null || value.isEmpty ? 'Digite seu nome' : null,
               ),
-            ),
-            const SizedBox(height: 20),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child:
-              Text('Resumo do pedido:',
-                   style: TextStyle(
-                     fontSize: 18,
-                     fontWeight: FontWeight.bold,
-                     ),
-                   ),
+            ),            
+            const SizedBox(height: 16),
             Text(
               'Total a pagar: R\$ ${widget.total.toStringAsFixed(2)}',
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const Spacer(),
+            const SizedBox(height: 16,),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
