@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'utils.dart';
+import 'orderStorage.dart';
 
 class ConfirmationScreen extends StatelessWidget {
   final String customerName;
@@ -20,6 +21,10 @@ class ConfirmationScreen extends StatelessWidget {
     final subtotal = selectedList.fold(0.0, (sum, item) => sum + item.price);
     final discountRate = calculateDiscountRate(selectedItems);
     final discount = subtotal * discountRate;
+
+WidgetsBinding.instance.addPostFrameCallback((_) {
+     OrderStorage.saveOrder(customerName, selectedItems, total);
+    });
 
     return Scaffold(
       backgroundColor: Colors.white,

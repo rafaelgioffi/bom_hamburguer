@@ -6,14 +6,15 @@ version: 1.0.0+1
 environment:
   sdk: ^3.8.1
 
-dependencies:
-  flutter:
+dependencies:  
+  flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.8
   shared_preferences: ^2.2.2
   sqflite: ^2.3.2
   path_provider: ^2.1.2
   path: ^1.9.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
